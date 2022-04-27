@@ -3,6 +3,10 @@ import React, {  useCallback, useEffect } from "react";
 import "dhtmlx-scheduler";
 import "dhtmlx-scheduler/codebase/dhtmlxscheduler_material.css";
 import './Scheduler.css';
+import 'dhtmlx-scheduler/codebase/ext/dhtmlxscheduler_timeline.js';
+import 'dhtmlx-scheduler/codebase/ext/dhtmlxscheduler_daytimeline.js';
+import 'dhtmlx-scheduler/codebase/ext/dhtmlxscheduler_treetimeline.js';
+
 
 const windowInstance :any = window;
 const scheduler = windowInstance.scheduler;
@@ -13,9 +17,42 @@ const Scheduler = (props: any) => {
   //const schedulerRef = useRef();
   const schedulerRef = useCallback((node: any) => {
     if (node !== null) {
+  
       console.log(node);
       scheduler.init(node, new Date(2020, 5, 10));
       scheduler.clearAll();
+      scheduler.skin = "material";
+      scheduler.config.header = [
+        "day",
+        "week",
+        "month",
+        "timeline",
+        "date",
+        "prev",
+        "today",
+        "next"
+      ];
+      scheduler.createTimelineView({
+        name:      "timeline",
+        x_unit:    "minute",
+        x_date:    "%H:%i",
+        x_step:    30,
+        x_size:    24,
+        x_start:   16,
+        x_length:  48,
+        y_unit:[   
+           {key:1, label:"Swapnil"},
+           {key:2, label:"Vamshi"},
+           {key:3, label:"Janhavee"},
+           {key:4, label:"Akashay"}  
+        ],
+        y_property: "section_id",
+        render:    "bar"
+   });
+      scheduler.config.hour_date = "%g:%i %A";
+      scheduler.xy.scale_width = 70;
+      initSchedulerEvents();
+  
       scheduler.parse(events);
       scheduler.render();
 
@@ -58,6 +95,7 @@ const Scheduler = (props: any) => {
 
   useEffect(() => {
     console.log(scheduler);
+    /*
     scheduler.skin = "material";
     scheduler.config.header = [
       "day",
@@ -66,12 +104,15 @@ const Scheduler = (props: any) => {
       "date",
       "prev",
       "today",
-      "next"
+      "next",
+      "Staff"
     ];
     scheduler.config.hour_date = "%g:%i %A";
     scheduler.xy.scale_width = 70;
-
+    scheduler.locale.labels.workweek_tab = "W-Week"
+		scheduler.locale.labels.decade_tab = "Decade"
     initSchedulerEvents();
+    */
 
     console.log(schedulerRef);
   }, []);
