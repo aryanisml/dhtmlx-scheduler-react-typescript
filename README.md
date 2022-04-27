@@ -44,3 +44,13 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+#  Timeline view is only available in Dhtmlx pro mode.
+
+After installing node modules please navigate to node_modules/dhtmlx-schduler/codebase
+and delete all the files.
+
+Download code base file from following url - https://github.com/aryanisml/codebasePro and paste the entire code in 
+node_modules/dhtmlx-schduler/codebase 
+
